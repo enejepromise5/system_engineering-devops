@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#A bash script that pints all the processes
+echo "USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND"
+ps -eo user,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,cmd --forest --sort=ppid
+
