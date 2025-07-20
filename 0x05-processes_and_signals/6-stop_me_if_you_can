@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Get the PID of the 4-to_infinity_and_beyond script
+PID=$(pgrep -f "./4-to_infinity_and_beyond")
+if [ -n "$PID" ]; then
+  echo "Stopping process with PID $PID..."
+
+
+  echo 15 > /proc/$PID/oom_score_adj 
+  exec 3>&-
+  exec 4>&-
+  
+  echo "Terminating by redirecting empty input"
+  : > "/proc/$PID/fd/0"
+
+else
+  echo "Process not found."
+fi
